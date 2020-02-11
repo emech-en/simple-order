@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - 12.13.0
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database simple_order_test;' -U postgres

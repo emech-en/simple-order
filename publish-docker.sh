@@ -1,12 +1,5 @@
 #!/bin/bash
 
-echo ""
-echo ""
-echo "------------------------------------"
-echo "LOGIN TO DOCKER HUB"
-echo "------------------------------------"
-echo "$DOCKER_PASS" | docker login -u emech --password-stdin || exit 1
-
 D_IMAGE_NAME=emech/simple-order
 COMMIT_SSH=$(echo "$TRAVIS_COMMIT" | cut -c1-7)
 TAGS=()
@@ -38,6 +31,13 @@ docker images
 echo ""
 echo ""
 echo "------------------------------------"
+echo "LOGIN TO DOCKER HUB"
+echo "------------------------------------"
+echo "$DOCKER_PASS" | docker login -u emech --password-stdin || exit 1
+
+echo ""
+echo ""
+echo "------------------------------------"
 echo "PUSHING DOCKER IMAGES"
 echo "------------------------------------"
 for t in "${TAGS[@]}"; do
@@ -45,3 +45,5 @@ for t in "${TAGS[@]}"; do
   echo "------------------------------------"
   docker push "${t}"
 done
+
+docker logout

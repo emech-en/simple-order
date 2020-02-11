@@ -13,3 +13,7 @@ script:
 deploy:
   provider: script
   script: bash ./publish-docker.sh $TRAVIS_BRANCH
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(develop|master)$
+    tags: true

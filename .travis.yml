@@ -11,5 +11,5 @@ script:
   - yarn coveralls
 
 deploy:
-  - provider: script
-    script: bash ./publish-docker.sh $TRAVIS_BRANCH
+  provider: script
+  script: bash ./publish-docker.sh $TRAVIS_BRANCH

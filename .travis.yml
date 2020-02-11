@@ -1,15 +1,11 @@
 language: node_js
-
 node_js:
   - 12.13.0
-
 services:
   - postgresql
   - docker
-
 before_script:
   - psql -c 'create database simple_order_test;' -U postgres
-
 script:
   - yarn test
   - yarn coveralls
@@ -27,10 +23,3 @@ deploy:
     script: "./publish-docker.sh tag"
     on:
       tags: true
-
-
-  provider: script
-  script: "./publish-docker.sh"
-  on:
-    branch: master OR develop
-    tags: true

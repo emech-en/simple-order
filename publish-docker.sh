@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "\$1 = $1"
+if [[ "$1" = "" ]]; then
+  echo "EMPTY"
+  fi
+
 D_IMAGE_NAME=emech/simple-order
 COMMIT_SSH=$(echo "$TRAVIS_COMMIT" | cut -c1-7)
 TAGS=

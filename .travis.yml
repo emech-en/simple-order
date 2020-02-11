@@ -15,4 +15,4 @@ deploy:
   script: bash ./publish-docker.sh $TRAVIS_BRANCH
   on:
     all_branches: true
-    condition: "\"$TRAVIS_BRANCH\" = \"develop\" || \"$TRAVIS_BRANCH\" = \"master\" || \"$TRAVIS_BRANCH\" = \"\""
+    condition: "\"$TRAVIS_BRANCH\" = \"develop\" || \"$TRAVIS_BRANCH\" = \"master\" || \"$TRAVIS_BRANCH\" = \"test-tag-11\""

@@ -5,7 +5,7 @@ echo ""
 echo "------------------------------------"
 echo "LOGIN TO DOCKER HUB"
 echo "------------------------------------"
-docker login -u emech --password "SALAM" || exit 1
+docker login -u emech -p "$DOCKER_PASS" || exit 1
 
 D_IMAGE_NAME=emech/simple-order
 COMMIT_SSH=$(echo "$TRAVIS_COMMIT" | cut -c1-7)

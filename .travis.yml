@@ -11,7 +11,7 @@ script:
   - yarn coveralls
 
 before_deploy:
-  - apt-get install pass
+  - sudo apt-get install pass
 
 deploy:
   provider: script

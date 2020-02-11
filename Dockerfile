@@ -7,7 +7,6 @@ COPY ./src ./src
 
 RUN yarn install
 RUN yarn build
-RUN ls -al
 
 EXPOSE 3000
 

@@ -12,7 +12,8 @@ script:
 
 deploy:
   provider: script
-  script: bash ./publish-docker.sh $TRAVIS_BRANCH
+  script: bash ./publish-docker.sh
   on:
     all_branches: true
-    condition: "\"$TRAVIS_BRANCH\" = \"develop\" || \"$TRAVIS_BRANCH\" = \"master\" || \"$TRAVIS_BRANCH\" = \"test-tag-11\""
+    condition: $TRAVIS_BRANCH =~ ^(develop|master)$
+    tags: false

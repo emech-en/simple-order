@@ -5,7 +5,7 @@ echo ""
 echo "------------------------------------"
 echo "LOGIN TO DOCKER HUB"
 echo "------------------------------------"
-docker login -u emech -p "$DOCKER_PASS" || exit 1
+echo "$DOCKER_PASS" | docker login -u emech --password-stdin || exit 1
 
 D_IMAGE_NAME=emech/simple-order
 COMMIT_SSH=$(echo "$TRAVIS_COMMIT" | cut -c1-7)
@@ -25,7 +25,8 @@ echo ""
 echo "------------------------------------"
 echo "BULDING DOCKER IMAGES: docker build $TAGS_ARGS ."
 echo "------------------------------------"
-docker build "$TAGS_ARGS" .
+# shellcheck disable=SC2086
+docker build ${TAGS_ARGS} .
 
 echo ""
 echo ""

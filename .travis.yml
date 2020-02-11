@@ -12,14 +12,4 @@ script:
 
 deploy:
   - provider: script
-    script: bash ./publish-docker.sh master
-    on:
-      branch: master
-  - provider: script
-    script: bash ./publish-docker.sh develop
-    on:
-      branch: develop
-  - provider: script
-    script: bash ./publish-docker.sh tag
-    on:
-      tags: true
+    script: bash ./publish-docker.sh $TRAVIS_BRANCH

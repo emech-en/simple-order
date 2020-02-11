@@ -6,15 +6,20 @@ TAGS=
 
 if [ "$1" = "develop" ]; then
   TAGS="-t $D_IMAGE_NAME:dev-lates -t $D_IMAGE_NAME:dev-b$TRAVIS_BUILD_NUMBER-$COMMIT_SSH"
-fi
-
-if [ "$1" = "master" ]; then
+elif [ "$1" = "master" ]; then
   TAGS="-t $D_IMAGE_NAME:lates -t $D_IMAGE_NAME:$COMMIT_SSH"
-fi
-
-if [ "$1" = "tag" ]; then
+elif [ "$1" = "" ]; then
   TAGS="-t $D_IMAGE_NAME:$TRAVIS_TAG"
 fi
 
+echo "------------------------------------"
+echo "BULDING DOCKER IMAGES: docker build $TAGS ."
+echo "------------------------------------"
 docker build $TAGS .
-docker images ls
+echo ""
+echo ""
+echo ""
+echo "------------------------------------"
+echo "SHOWING DOCKER IMAGES: docker images"
+echo "------------------------------------"
+docker images

@@ -32,7 +32,7 @@ echo ""
 echo "------------------------------------"
 echo "PUSHING DOCKER IMAGES"
 echo "------------------------------------"
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+echo "$DOCKER_PASSWORD" | docker login -u emech --password-stdin
 for t in "${TAGS[@]}"; do
   echo "docker push $t"
   echo "------------------------------------"

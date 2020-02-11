@@ -12,14 +12,14 @@ script:
 
 deploy:
   - provider: script
-    script: "./publish-docker.sh master"
+    script: bash ./publish-docker.sh master
     on:
       branch: master
   - provider: script
-    script: "./publish-docker.sh develop"
+    script: bash ./publish-docker.sh develop
     on:
       branch: develop
   - provider: script
-    script: "./publish-docker.sh tag"
+    script: bash ./publish-docker.sh tag
     on:
       tags: true

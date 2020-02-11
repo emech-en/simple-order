@@ -2,7 +2,7 @@
   "name": "simple-order",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "emech-en",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",

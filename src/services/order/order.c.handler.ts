@@ -3,7 +3,7 @@ import { OrderHandler } from './order.handler';
 import { OrderDto } from '../../dto/order.dto';
 import { OrderEntity } from '../../models/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityManager, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { ProductService } from '../product/product.service';
 import { OrderCEntity } from '../../models/order.c.entity';
 
@@ -11,7 +11,7 @@ import { OrderCEntity } from '../../models/order.c.entity';
 export class OrderCHandler extends OrderHandler {
   constructor(
     @InjectRepository(OrderEntity)
-    private readonly orderRepository: Repository<OrderEntity>,
+    private orderRepository: Repository<OrderEntity>,
     @Inject(ProductService)
     productService: ProductService,
   ) {
@@ -22,16 +22,12 @@ export class OrderCHandler extends OrderHandler {
     return order.Partner === 'C';
   }
 
-  protected async createConcreteOrder(
-    entityManager: EntityManager,
-    baseOrder: OrderEntity,
-    dto: OrderDto,
-  ): Promise<OrderEntity> {
+  protected async createConcreteOrder(baseOrder: OrderEntity, dto: OrderDto): Promise<OrderEntity> {
     const order = new OrderCEntity(baseOrder);
     order.exposureID = dto.ExposureID;
     order.udac = dto.UDAC;
     order.relatedOrderId = dto.RelatedOrder;
-    return entityManager.save(order);
+    return order;
   }
 
   protected async validateConcreteOrder(dto: OrderDto): Promise<void> {

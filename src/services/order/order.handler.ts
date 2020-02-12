@@ -24,7 +24,8 @@ export abstract class OrderHandler {
       baseOrder.submittedBy = dto.SubmittedBy;
       baseOrder.typeOfOrder = dto.TypeOfOrder;
 
-      const concreteOrder = await this.createConcreteOrder(entityManager, baseOrder, dto);
+      const concreteOrder = await this.createConcreteOrder(baseOrder, dto);
+      await entityManager.save(concreteOrder);
       concreteOrder.products = [];
       for (const product of dto.LineItems) {
         const p = await this.productService.saveNewProduct(entityManager, concreteOrder, product);
@@ -36,9 +37,7 @@ export abstract class OrderHandler {
 
   protected abstract async validateConcreteOrder(dto: OrderDto): Promise<void>;
 
-  protected abstract async createConcreteOrder(
-    entityManager: EntityManager,
-    baseOrder: OrderEntity,
-    dto: OrderDto,
-  ): Promise<OrderEntity>;
+  protected async createConcreteOrder(baseOrder: OrderEntity, dto: OrderDto): Promise<OrderEntity> {
+    return baseOrder;
+  }
 }

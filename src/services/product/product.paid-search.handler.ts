@@ -1,7 +1,6 @@
 import { ProductDto } from '../../dto/product.dto';
 import { ProductHandler } from './product.handler';
 import { BadRequestException } from '@nestjs/common';
-import { EntityManager } from 'typeorm';
 import { ProductEntity } from '../../models/product.entity';
 import { ProductPaidSearchEntity } from '../../models/product.paid-search.entity';
 import { CampaignDetails } from '../../models/campaign-details';
@@ -17,11 +16,7 @@ export class ProductPaidSearchHandler extends ProductHandler {
     }
   }
 
-  protected async createConcreteProduct(
-    entityManager: EntityManager,
-    baseProduct: ProductEntity,
-    dto: ProductDto,
-  ): Promise<ProductEntity> {
+  protected async createConcreteProduct(baseProduct: ProductEntity, dto: ProductDto): Promise<ProductEntity> {
     const p = new ProductPaidSearchEntity(baseProduct);
 
     p.adWordCampaign = new CampaignDetails();
@@ -37,6 +32,6 @@ export class ProductPaidSearchHandler extends ProductHandler {
     p.adWordCampaign.uniqueSellingPoint2 = dto.AdWordCampaign.UniqueSellingPoint2;
     p.adWordCampaign.uniqueSellingPoint3 = dto.AdWordCampaign.UniqueSellingPoint3;
 
-    return entityManager.save(p);
+    return p;
   }
 }

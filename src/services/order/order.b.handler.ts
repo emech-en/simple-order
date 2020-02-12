@@ -1,32 +1,23 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { OrderHandler } from './order.handler';
 import { OrderDto } from '../../dto/order.dto';
-import { OrderEntity } from '../../models/order.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { EntityManager, Repository } from 'typeorm';
+import { InjectEntityManager } from '@nestjs/typeorm';
+import { EntityManager } from 'typeorm';
 import { ProductService } from '../product/product.service';
 
 @Injectable()
 export class OrderBHandler extends OrderHandler {
   constructor(
-    @InjectRepository(OrderEntity)
-    orderRepository: Repository<OrderEntity>,
+    @InjectEntityManager()
+    entityManager: EntityManager,
     @Inject(ProductService)
     productService: ProductService,
   ) {
-    super(orderRepository.manager, productService);
+    super(entityManager, productService);
   }
 
   canHandleOrder(order: OrderDto): boolean {
     return order.Partner === 'B';
-  }
-
-  protected async createConcreteOrder(
-    entityManager: EntityManager,
-    baseOrder: OrderEntity,
-    dto: OrderDto,
-  ): Promise<OrderEntity> {
-    return entityManager.save(baseOrder);
   }
 
   protected async validateConcreteOrder(dto: OrderDto): Promise<void> {

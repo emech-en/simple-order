@@ -4,7 +4,7 @@ import { OrderDto } from '../../dto/order.dto';
 import { OrderEntity } from '../../models/order.entity';
 import { OrderAEntity } from '../../models/order.a.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityManager, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { ProductService } from '../product/product.service';
 
 @Injectable()
@@ -49,11 +49,7 @@ export class OrderAHandler extends OrderHandler {
     }
   }
 
-  protected async createConcreteOrder(
-    entityManager: EntityManager,
-    baseOrder: OrderEntity,
-    dto: OrderDto,
-  ): Promise<OrderEntity> {
+  protected async createConcreteOrder(baseOrder: OrderEntity, dto: OrderDto): Promise<OrderEntity> {
     const order = new OrderAEntity(baseOrder);
     order.contactEmail = dto.ContactEmail;
     order.contactPhone = dto.ContactPhone;
@@ -61,6 +57,6 @@ export class OrderAHandler extends OrderHandler {
     order.contactMobile = dto.ContactMobile;
     order.contactLastName = dto.ContactLastName;
     order.contactFirstName = dto.ContactFirstName;
-    return entityManager.save(order);
+    return order;
   }
 }

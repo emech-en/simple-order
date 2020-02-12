@@ -15,14 +15,11 @@ export abstract class ProductHandler {
     baseProduct.notes = dto.Notes;
     baseProduct.order = order;
 
-    return await this.createConcreteProduct(entityManager, baseProduct, dto);
+    const concreteProduct = await this.createConcreteProduct(baseProduct, dto);
+    return await entityManager.save(concreteProduct);
   }
 
   abstract async validateProduct(dto: ProductDto): Promise<void>;
 
-  protected abstract async createConcreteProduct(
-    entityManager: EntityManager,
-    baseProduct: ProductEntity,
-    dto: ProductDto,
-  ): Promise<ProductEntity>;
+  protected abstract async createConcreteProduct(baseProduct: ProductEntity, dto: ProductDto): Promise<ProductEntity>;
 }

@@ -3,7 +3,6 @@ import { ProductHandler } from './product.handler';
 import { BadRequestException } from '@nestjs/common';
 import { ProductWebsiteEntity } from '../../models/product.website.entity';
 import { WebsiteDetails } from '../../models/website-details';
-import { EntityManager } from 'typeorm';
 import { ProductEntity } from '../../models/product.entity';
 
 export class ProductWebsiteHandler extends ProductHandler {
@@ -17,11 +16,7 @@ export class ProductWebsiteHandler extends ProductHandler {
     }
   }
 
-  protected async createConcreteProduct(
-    entityManager: EntityManager,
-    baseProduct: ProductEntity,
-    dto: ProductDto,
-  ): Promise<ProductEntity> {
+  protected async createConcreteProduct(baseProduct: ProductEntity, dto: ProductDto): Promise<ProductEntity> {
     const p = new ProductWebsiteEntity(baseProduct);
 
     p.websiteDetails = new WebsiteDetails();
@@ -36,6 +31,6 @@ export class ProductWebsiteHandler extends ProductHandler {
     p.websiteDetails.addressLine1 = dto.WebsiteDetails.WebsiteAddressLine1;
     p.websiteDetails.addressLine2 = dto.WebsiteDetails.WebsiteAddressLine2;
 
-    return entityManager.save(p);
+    return p;
   }
 }

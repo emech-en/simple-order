@@ -13,7 +13,7 @@ services:
       - so_network
 
   backend:
-    image: simple-order
+    image: emech/simple-order:latest
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_PASSWORD=mysecretpassword

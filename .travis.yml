@@ -1,0 +1,26 @@
+sudo: required
+addons:
+  apt:
+    update: true
+    packages:
+      - pass
+language: node_js
+node_js:
+  - 12.13.0
+services:
+  - postgresql
+  - docker
+before_script:
+  - psql -c 'create database simple_order_test;' -U postgres
+script:
+  - yarn test
+  - yarn coveralls
+deploy:
+  provider: script
+  script: bash ./publish-docker.sh
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(develop|master)$
+    tags: false
+env:
+  secure: Tqpv+qDXSwn5lC5968eP8gR4gm8wJd9CYL6ZLZ3pYgqE9G8h6h58QD8YnhNZRAlSTjdXqIP9S1NyurVY+F+w/DxScIHlxbQd1RCTEuGJh1lBHyU6iDMT95nDB9rWbd24e7F5+zxaU5QSyZ7GcN0IGngafx+Z3TBmPmMJic/Ey2SRyc1LTP7DGNyRvaH6AbzrLw6F4kxcW09oSPZgq0j/Ua8rKJfzihvKC1IvPPbLFkI27I4c0LcB04aBduEEdWMSAKOZMAUVtxvbhgLpW5cw6pqaXgj4mVihw0stpTkX06EYADMP8AY9cizLNJ7Cv1QKhBLK7Qprm5K2Zp5k4t9lyicTn8MbBSSO6j2Majf6Y8AUfQW8CnV3t5W9Sp2PbTceopx+A77fDAfjLNsvBZXugYObhdxhzwuQcWjo4oeiAEAC2lxbHkmDuO5U/266UHkl5bZFg8ftzRhqkRgwhqLfr/hhTGQi6R9p6aVIcesVY0z8LGLL3qqDK9f+Q0zKxRAGgR70hddzjbQxUyHr3Say2+7T2RJGYRwp2b1ZSsiyyYTVXRRBStzSS2RyS/Ba2a5cuSPuLu6gkhP/hII1/6Jotp8IjoB5Ip3sGrP17JJf3be5HxUuT+znvp/f2wgZGqL10yn/ToRnQch40f/2OxRBtunLRpxr3KlN5mjW+nG7yRw=

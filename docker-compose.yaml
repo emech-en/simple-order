@@ -1,0 +1,35 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:11
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=simple_order
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - so_network
+
+  backend:
+    image: emech/simple-order:latest
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=simple_order
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - so_network
+    depends_on:
+      - postgres
+
+networks:
+  so_network:
+
+volumes:
+  postgres_data:
+    external: false

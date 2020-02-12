@@ -1,75 +1,100 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Simple Order Api
+[![Build Status](https://travis-ci.org/emech-en/simple-order.svg?branch=master)](https://travis-ci.org/emech-en/simple-order)
+[![Coverage Status](https://coveralls.io/repos/github/emech-en/simple-order/badge.svg?branch=master)](https://coveralls.io/github/emech-en/simple-order?branch=master)
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+`Simple Order API` is a simple rest API created with the excellent [NestJs Framework](https://nestjs.com/). This API server has only one functional endpoint `[post] /api/order` which, receives the order's JSON object and saves it in a database.
 
-## Description
+The purpose of this project is to demonstrate the followings:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Development of an `extensible` backend service with TypeScript and NestJs Framework.
+- Using [TypeORM](https://typeorm.io/) to design data models and insert / query data.
+- Application of the SOLID principles:
+  - Single Responsibility
+  - Open/Closed Principle
+  - Liskov Substitution
+  - Interface Segregation
+  - Dependency Inversion
+- Automatic software testing with and achieving almost 100% coverage:
+  - Unit Tests
+  - End-to-End Tests
+- Containerization with `Docker` and `docker-compose`
+- Using CI/CD tools:
+  - Using [Travis CI](https://travis-ci.org/) to automatically create the docker images and push them to the docker hub.
+  - Using [Coveralls](https://coveralls.io/) to store test coverage reports.
+- Usage of `Swagger` to document the API specifications
+
+## Project structure
+
+- `src/` contains all typescript source files
+  - `dto/` contains data type definitions for api interfaces
+  - `models/` contains data models and entities
+  - `services/` contains services required for creating and validating Orders and Products
+  - `app.module.ts` file is the main Nest module and contains the dependency injection configurations
+  - `order.controller.ts` file is the controller class to handler `api/order` endpoint
+  - `*.spec.ts` files are the unit tests files (for example `order.controller.spec.ts`)
+- `test/` directory contains e2e tests
+
+## Extensibility vs Simplicity
+
+The __KISS__ Principle (keep it stupid simple) is very crucial in software development, and the software always should be as simple as possible.
+
+Although the complexity of this project seems too high for now, but to support new product and order types, there is no need to change current files in the source code:
+1. Define new Product and Order types in the `dto` and `models` directories.
+2. Implement their associated handlers in the `services` folder.
+
+## Online Resources
+
+- [The Swagger documentation](http://localhost:3000/docs) is under `http://localhost:3000/docs` path
+- [Docker Hub page](https://hub.docker.com/repository/docker/emech/simple-order/general)
+- [Travis CI page](https://travis-ci.org/emech-en/simple-order)
+- [Coveralls CI page](https://coveralls.io/github/emech-en/simple-order)
+
+## Requirements
+
+- Node.Js
+- yarn
+- Postgres databases:
+  - `simple_order` for development
+  - `simple_order_test` for e2e tests
 
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
+# run all tests and calculate the coverage
+$ yarn test
 
-# e2e tests
-$ npm run test:e2e
+# unit tests only
+$ yarn test:unit
 
-# test coverage
-$ npm run test:cov
+# e2e tests only
+$ yarn test:e2e
 ```
 
-## Support
+## Deployment
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+$ docker-compose up 
+```
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+- Author: [Emech En](https://github.com/emech-en) < [mh.niroomand91@gmail.com](mailto://mh.niroomand91@gmail.com) >

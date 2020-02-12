@@ -17,11 +17,7 @@ class MockProductHandler extends ProductHandler {
     return undefined;
   }
 
-  protected async createConcreteProduct(
-    entityManager: EntityManager,
-    baseProduct: ProductEntity,
-    dto: ProductDto,
-  ): Promise<ProductEntity> {
+  protected async createConcreteProduct(baseProduct: ProductEntity, dto: ProductDto): Promise<ProductEntity> {
     return undefined;
   }
 }

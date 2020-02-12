@@ -1,14 +1,15 @@
 # Simple Order Api
+
 [![Build Status](https://travis-ci.org/emech-en/simple-order.svg?branch=master)](https://travis-ci.org/emech-en/simple-order)
 [![Coverage Status](https://coveralls.io/repos/github/emech-en/simple-order/badge.svg?branch=master)](https://coveralls.io/github/emech-en/simple-order?branch=master)
 
-`Simple Order API` is a simple rest API created with the excellent [NestJs Framework](https://nestjs.com/). This API server has only one functional endpoint `[post] /api/order` which, receives the order's JSON object and saves it in a database.
+**Simple Order API** is a simple rest API created with the excellent [NestJs Framework](https://nestjs.com/). This API server has only one functional endpoint `[post] /api/order` which, receives the order's JSON object and saves it in a database.
 
 The purpose of this project is to demonstrate the followings:
 
-- Development of an `extensible` backend service with TypeScript and NestJs Framework.
-- Using [TypeORM](https://typeorm.io/) to design data models and insert / query data.
-- Application of the SOLID principles:
+- Development of an **extensible** backend service with `TypeScript` and `NestJs` framework.
+- Using [`TypeORM`](https://typeorm.io/) to design data models and insert / query data.
+- Application of the **SOLID** principles:
   - Single Responsibility
   - Open/Closed Principle
   - Liskov Substitution
@@ -19,11 +20,11 @@ The purpose of this project is to demonstrate the followings:
   - End-to-End Tests
 - Containerization with `Docker` and `docker-compose`
 - Using CI/CD tools:
-  - Using [Travis CI](https://travis-ci.org/) to automatically create the docker images and push them to the docker hub.
-  - Using [Coveralls](https://coveralls.io/) to store test coverage reports.
+  - [Travis CI](https://travis-ci.org/) to automatically create the docker images and push them to the docker hub.
+  - [Coveralls](https://coveralls.io/) to store test coverage reports.
 - Usage of `Swagger` to document the API specifications
 
-## Project structure
+## Project Structure
 
 - `src/` contains all typescript source files
   - `dto/` contains data type definitions for api interfaces
@@ -36,11 +37,11 @@ The purpose of this project is to demonstrate the followings:
 
 ## Extensibility vs Simplicity
 
-The __KISS__ Principle (keep it stupid simple) is very crucial in software development, and the software always should be as simple as possible.
+The __`KISS`__ Principle (keep it stupid simple) is very crucial in software development, and the software always should be as simple as possible.
 
 Although the complexity of this project seems too high for now, but to support new product and order types, there is no need to change current files in the source code:
-1. Define new Product and Order types in the `dto` and `models` directories.
-2. Implement their associated handlers in the `services` folder.
+1. Define new Product and Order types in the `dto/` and `models/` directories.
+2. Implement their associated handlers in the `services/` folder.
 
 ## Online Resources
 
@@ -51,9 +52,9 @@ Although the complexity of this project seems too high for now, but to support n
 
 ## Requirements
 
-- Node.Js
+- node.js
 - yarn
-- Postgres databases:
+- postgres databases:
   - `simple_order` for development
   - `simple_order_test` for e2e tests
 

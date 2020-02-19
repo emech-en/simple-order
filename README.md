@@ -15,12 +15,12 @@ The purpose of this project is to demonstrate the followings:
   - Liskov Substitution
   - Interface Segregation
   - Dependency Inversion
-- Automatic software testing with [`jest`](https://jestjs.io/) and achieving almost 100% coverage:
+- Automatic software testing with [`jest`](https://jestjs.io/) and achieving almost 100% code coverage:
   - Unit Tests
   - End-to-End Tests
 - Containerization with `Docker` and `docker-compose`
 - Using CI/CD tools:
-  - [Travis CI](https://travis-ci.org/) to automatically create the docker images and push them to the docker hub.
+  - [Travis CI](https://travis-ci.org/) to automatically run tests, build docker images and push to docker hub.
   - [Coveralls](https://coveralls.io/) to store test coverage reports.
 - Usage of `Swagger` to document the API specifications
 
@@ -46,7 +46,7 @@ According to the __`KISS`__ Principle (Keep It Stupid Simple), the complexity of
 
 - [The project's Swagger documentation](http://localhost:3000/docs) is under `http://localhost:3000/docs` path
 - [Docker Hub page containing the docker images](https://hub.docker.com/repository/docker/emech/simple-order/general)
-- [Travis CI page to show test and build status](https://travis-ci.org/emech-en/simple-order)
+- [Travis CI page to show test results and build status](https://travis-ci.org/emech-en/simple-order)
 - [Coveralls page to show test coverage results](https://coveralls.io/github/emech-en/simple-order)
 
 ## Requirements

@@ -15,7 +15,7 @@ The purpose of this project is to demonstrate the followings:
   - Liskov Substitution
   - Interface Segregation
   - Dependency Inversion
-- Automatic software testing with and achieving almost 100% coverage:
+- Automatic software testing with [`jest`](https://jestjs.io/) and achieving almost 100% coverage:
   - Unit Tests
   - End-to-End Tests
 - Containerization with `Docker` and `docker-compose`
@@ -37,18 +37,17 @@ The purpose of this project is to demonstrate the followings:
 
 ## Extensibility vs Simplicity
 
-The __`KISS`__ Principle (keep it stupid simple) is very crucial in software development, and the software always should be as simple as possible.
-
-Although the complexity of this project seems too high for now, but to support new product and order types, there is no need to change current files in the source code:
+According to the __`KISS`__ Principle (Keep It Stupid Simple), the complexity of this project seems too high for now. But there is a consideration for support new product and order types in the future with minimum changes:
 1. Define new Product and Order types in the `dto/` and `models/` directories.
 2. Implement their associated handlers in the `services/` folder.
+3. Register new handlers in the `app.module.ts` file.
 
 ## Online Resources
 
-- [The Swagger documentation](http://localhost:3000/docs) is under `http://localhost:3000/docs` path
-- [Docker Hub page](https://hub.docker.com/repository/docker/emech/simple-order/general)
-- [Travis CI page](https://travis-ci.org/emech-en/simple-order)
-- [Coveralls CI page](https://coveralls.io/github/emech-en/simple-order)
+- [The project's Swagger documentation](http://localhost:3000/docs) is under `http://localhost:3000/docs` path
+- [Docker Hub page containing the docker images](https://hub.docker.com/repository/docker/emech/simple-order/general)
+- [Travis CI page to show test and build status](https://travis-ci.org/emech-en/simple-order)
+- [Coveralls page to show test coverage results](https://coveralls.io/github/emech-en/simple-order)
 
 ## Requirements
 
@@ -72,6 +71,9 @@ $ yarn start
 
 # watch mode
 $ yarn start:dev
+
+# production build 
+$ yarn build
 
 # production mode
 $ yarn start:prod
